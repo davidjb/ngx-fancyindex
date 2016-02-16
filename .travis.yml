@@ -6,11 +6,11 @@ compiler:
 
 env:
   # At least try stable and mainline versions
-  - NGINX=1.9.11
-  - NGINX=1.8.1
+  - NGINX_VERSION=1.9.11
+  - NGINX_VERSION=1.8.1
   # Also, the oldest supported version
   # TODO: Fails building because it won't find IOV_MAX from header.
-  #- NGINX=0.7.69
+  #- NGINX_VERSION=0.7.69
 
 sudo: false
 
@@ -23,7 +23,7 @@ addons:
 cache: ccache
 
 script: |
-  wget -O - http://nginx.org/download/nginx-${NGINX}.tar.gz | tar -xzf -
-  cd nginx-${NGINX}
+  wget -O - http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -xzf -
+  cd nginx-${NGINX_VERSION}
   ./configure --add-module=.. --with-http_addition_module
   make
